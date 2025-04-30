@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GITAM University Event Hub</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #007367; /* GITAM Theme Color */
+    padding: 15px 30px;
+}
+
+/* Logo */
+.navbar img {
+    height: 50px;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    width: 250px;
+}
+
+.search-input {
+    border: none;
+    padding: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #234D32;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a:hover {
+    background: #3D6D5A;
+    border-radius: 5px;
+}
+
+/* Profile Image & Dropdown */
+.profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    cursor: pointer;
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0; /* Align to right */
+    top: 100%; /* Show below profile */
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    
+}
+
+.dropdown-content a:hover {
+    background: #3D6D5A;
+    color: white;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Home Banner */
+.home-banner {
+    text-align: center;
+    padding: 80px 20px;
+    background: #007367;
+    color: white;
+}
+
+.home-banner h1 {
+    font-size: 36px;
+}
+
+.explore-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: white;
+    color: black;
+    font-size:15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.explore-btn:hover {
+    background: white;
+font-size:15px;
+color:black;
+}
+
+/* Events Section */
+.events-section {
+    text-align: center;
+    padding: 50px;
+    background: #f8f8f8;
+}
+
+.event-card {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    background: white;
+
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.event-card img {
+    width:100px;
+    height:100px;
+    border-radius: 10px;
+}
+
+.event-card h3 {
+    margin: 10px 0;
+}
+
+.event-card a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #007367;
+    color: white;
+    font-size:15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.event-card a:hover {
+    background: white;
+color: black;
+font-size:15px;
+}
+
+/* Testimonials */
+.testimonials {
+    text-align: center;
+    padding: 50px;
+    background: #f4f4f4;
+    overflow: hidden;
+}
+
+.testimonial-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    white-space: nowrap;
+}
+
+.testimonial {
+    flex: 0 0 auto;
+    width: 300px;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Ensure long words break properly */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Hide scrollbar */
+.testimonial-container::-webkit-scrollbar {
+    display: none;
+}
+/* Footer */
+.footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.footer a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+/* Profile Image for Dropdown */
+.profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Dropdown Button Styling */
+.dropbtn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure dropdown is fully visible */
+.dropdown-content {
+    position: absolute;
+    right: 0; /* Align to right */
+    top: 100%; /* Position below the profile image */
+    background-color: white;
+    min-width: 150px; /* Adjust width */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000; /* Ensure it's above other elements */
+    overflow: visible; /* Make sure it's not cut off */
+    margin:0;
+    padding:0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="C:\Users\hljay\Downloads\images.png"  width="75" alt="GITAM Logo">
+<!-- Search Bar -->
+        <div class="search-container">
+        <input type="text" id="searchBar" class="search-input" placeholder="Search events...">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <ul class="nav-links">
+<li><a href="C:\Users\hljay\Downloads\gitam.html">Home</a></li> <!-- Home Page Link Added -->
+            <li class="dropdown">
+                <a href="#">About Us</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.gitam.edu/about-us" target="_blank">About GITAM</a></li>
+                    <li><a href="https://www.gitam.edu/campus-life" target="_blank">Campus Life</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Campus</a>
+                <ul class="dropdown-content">
+                    <li><a href="C:\Users\hljay\Downloads\Vskp.html">Visakhapatnam</a></li>
+                    <li><a href="C:\Users\hljay\Downloads\Hyd.html">Hyderabad</a></li>
+                    <li><a href="C:\Users\hljay\Downloads\Blr.html">Bangalore</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html" onclick="showContact()">Contact</a></li>
+            <li><a href="leaderboard.html" onclick="showLeaderBoard()">LeaderBoard</a></li>
+            <li><a href="C:\Users\hljay\Downloads\myaccount.html" onclick="showTickets()">My Account</a></li>
+           <li class="dropdown">
+           <button class="dropbtn">
+           <img src="C:\Users\hljay\Downloads\signup logo.jpg" height="5" width="5" alt="Profile" class="profile-img">
+           </button>
+           <div class="dropdown-content">
+           <a href="C:\Users\hljay\Downloads\login.html">Login</a>
+           <a href="C:\Users\hljay\Downloads\signup.html">Sign Up</a>
+           </div>
+           </li>
+
+
+  
+        </ul>
+    </div>
+    <div class="home-banner">
+    <h1>Welcome to GITAM University Event Hub</h1>
+    <p>Your one-stop destination for all campus events, fests, and workshops!</p>
+    </div>
+<div style="position: absolute; top: 80px; right: 20px;"> 
+    <a href="C:\Users\hljay\Downloads\createevent.html" style="display: inline-block; padding: 10px 20px; background-color: white; color: black; font-size: 15px; text-decoration: none; border: none; border-radius: 5px; cursor: pointer;">
+        + Create Event
+    </a>
+</div>
+
+<div class="events-section">
+    <h2>Upcoming Events</h2>
+  <div class="event-card event">
+    <img src="https://shore.gitam.edu/static/img/shore25logo.png" height="5" width="5" alt="Event 1">
+    <h3>Shore Fest 2025</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Vizag</p>
+    <a href="#">Register Now</a>
+    <button class="register-btn" onclick="openRegistrationForm('Shore Fest 2025', 'cultural')">Register</button>
+
+<button class="register-btn">Register Now</button>
+ </div>
+  <div class="event-card event">
+    <img src="https://www.bitmesra.ac.in/UploadedDocuments/jpradmincse/images/AIML_workshop.jpg" height="5" width="5" alt="Event 2">
+    <h3>AIML Workshop</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Vizag</p>
+    <a href="#">Register Now</a>
+</div>
+ <div class="event-card event">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsBt45wgqAaC3xNkr1_E9lG1Qw5YE8amdqOw&s" height="5" width="5" alt="Event 3">
+    <h3>Genesis 2025</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Vizag</p>
+    <a href="#">Register Now</a>
+</div>
+<div class="event-card event">
+    <img src="https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/mobile_banner/6401f059cd52e_debate.png?d=700x400" height="5" width="5" alt="Event 4">
+    <h3>HAVANA'25</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Hyderabad</p>
+    <a href="#">Register Now</a>
+</div>
+<div class="event-card event">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbk5ulCDU6aWBJWTev-fzL3Qf2VYNEyc9N3w&s" height="5" width="5" alt="Event 5">
+    <h3>IOT Workshop</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Hyderabad</p>
+    <a href="#">Register Now</a>
+</div>
+<div class="event-card event">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSb1YgdwJ_WaP_rxMTMU7hg8XAtuocn_uLOQ&s" height="5" width="5" alt="Event 6">
+    <h3>Foss Hack Workshop</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Hyderabad</p>
+    <a href="#">Register Now</a>
+</div>
+<div class="event-card event">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTckji_CCp9lNkduQo-Urbdh2MZXvMZ-exqyQ&s" height="5" width="5" alt="Event 7">
+    <h3>Epoch 2025</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Banglore</p>
+    <a href="#">Register Now</a>
+</div>
+<div class="event-card event">
+    <img src="https://i.ytimg.com/vi/uhAys6Pmn0o/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCamfMBVRra8tOpDlRgLkVrgQECLg" height="5" width="5" alt="Event 8">
+    <h3>Cloud Computing Workshop</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Banglore</p>
+    <a href="#">Register Now</a>
+</div>
+<div class="event-card event">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuJppyMWtYbTvNGYh_Kqa2iiuKZp5dINg-EA&s" height="5" width="5" alt="Event 9">
+    <h3>Coding Contest</h3>
+    <p>Date: March 20, 2025 | Location: GITAM Banglore</p>
+    <a href="#">Register Now</a>
+</div>
+
+</div>
+<div class="testimonials">
+    <h2>What Students Say</h2>
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <p>"The AI & ML Workshop was amazing! It helped me a lot!"</p>
+            <strong>- Rahul, CSE</strong>
+        </div>
+        <div class="testimonial">
+            <p>"Hackathon 2024 at GITAM was a game-changer!"</p>
+            <strong>- Priya, ECE</strong>
+        </div>
+        <div class="testimonial">
+            <p>"The Web Development Bootcamp made me industry-ready!"</p>
+            <strong>- Arjun, IT</strong>
+        </div>
+        <div class="testimonial">
+            <p>"Cybersecurity training was eye-opening and insightful!"</p>
+            <strong>- Meera, CSE</strong>
+        </div>
+        <div class="testimonial">
+            <p>"The Data Science seminar expanded my career horizons!"</p>
+            <strong>- Sandeep, AI & DS</strong>
+        </div>
+        <div class="testimonial">
+            <p>"Cloud Computing sessions were extremely beneficial!"</p>
+            <strong>- Anjali, EEE</strong>
+        </div>
+        <div class="testimonial">
+            <p>"The Robotics Club helped me build my first working prototype!"</p>
+            <strong>- Vikram, ME</strong>
+        </div>
+        <div class="testimonial">
+            <p>"The Blockchain Workshop gave me deep insights into decentralized apps!"</p>
+            <strong>- Neha, IT</strong>
+        </div>
+        <div class="testimonial">
+            <p>"Machine Learning applications taught here were very practical!"</p>
+            <strong>- Karan, CSE</strong>
+        </div>
+        <div class="testimonial">
+            <p>"The IoT seminar helped me integrate hardware with software effectively!"</p>
+            <strong>- Swathi, ECE</strong>
+        </div>
+    </div>
+</div></div><div class="footer">
+    <p>📩 Contact: events@gitam.edu | 🌍 Follow us on <a href="#">Instagram</a>, <a href="#">LinkedIn</a></p>
+</div>
+
+
+
+    
+    <script>
+document.getElementById("searchBar").addEventListener("input", searchEvents);
+document.getElementById("searchBar").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        searchEvents();
+    }
+});
+
+function searchEvents() {
+    let query = document.getElementById("searchBar").value.toLowerCase();
+    let events = document.querySelectorAll(".event"); // Select all event cards
+    let found = false;
+
+    events.forEach(event => {
+        let eventName = event.querySelector("h3").textContent.toLowerCase();
+        if (eventName.includes(query)) {
+            event.style.display = "inline-block"; // ✅ Show matching event
+            found = true;
+        } else {
+            event.style.display = "none"; // ❌ Hide non-matching events
+        }
+    });
+
+    let message = document.getElementById("noResultsMessage");
+    if (!found) {
+        if (!message) {
+            message = document.createElement("p");
+            message.id = "noResultsMessage";
+            message.textContent = "No events found!";
+            message.style.color = "red";
+            message.style.textAlign = "center";
+            document.querySelector(".events-section").appendChild(message);
+        }
+    } else if (message) {
+        message.remove();
+    }
+}
+        function showEvents(campus) {
+            let events = {
+                visakhapatnam: `<h2>Events in Visakhapatnam</h2><p>Tech Fest, Workshops...</p>`,
+                hyderabad: `<h2>Events in Hyderabad</h2><p>Hackathons, Seminars...</p>`,
+                bangalore: `<h2>Events in Bangalore</h2><p>AI Summit, Conferences...</p>`
+            };
+            document.getElementById("event-list").innerHTML = events[campus];
+        }
+        function showContact() { document.getElementById("main-content").innerHTML = "<h2>Contact Information</h2><p>Visakhapatnam: +91 XXXXX XXXXX</p><p>Hyderabad: +91 XXXXX XXXXX</p><p>Bangalore: +91 XXXXX XXXXX</p>"; }
+        function showCreateEvent() { document.getElementById("main-content").innerHTML = "<h2>How to Create an Event</h2><p>Follow the steps to create an event...</p>"; }
+        function showHelpCenter() { document.getElementById("main-content").innerHTML = "<h2>Help Center</h2><p>Support for all campuses...</p>"; }
+        function showTickets() { document.getElementById("main-content").innerHTML = "<h2>Your Tickets</h2><p>List of booked tickets...</p>"; }
+        function showLogin() { document.getElementById("main-content").innerHTML = "<h2>Login</h2><input type='text' placeholder='GITAM Role Number'><br><input type='password' placeholder='Password'><br><button>Login</button>"; }
+        function showSignUp() { document.getElementById("main-content").innerHTML = "<h2>Sign Up</h2><input type='text' placeholder='Full Name'><br><input type='email' placeholder='GITAM Email'><br><input type='password' placeholder='Password'><br><button>Sign Up</button>"; }
+
+function showCreateEvent() {
+    document.getElementById("main-content").innerHTML = `
+        <h2>Create a New Event</h2>
+        <label>Event Name:</label><br>
+        <input type="text" placeholder="Enter event name"><br>
+        <label>Date:</label><br>
+        <input type="date"><br>
+        <label>Location:</label><br>
+        <input type="text" placeholder="Enter event location"><br>
+        <button>Submit Event</button>
+        <button onclick="showHome()">Back to Home</button>
+    `;
+}
+document.querySelector(".dropbtn").addEventListener("click", function () {
+    let dropdown = document.querySelector(".dropdown-content");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+});
+
+
+// Hide dropdown when clicking outside
+window.addEventListener("click", function (event) {
+    if (!event.target.matches(".dropbtn")) {
+        document.querySelector(".dropdown-content").style.display = "none";
+    }
+});
+function openRegistrationForm(eventName, category) {
+            selectedEvent = eventName;
+            selectedCategory = category;
+            document.getElementById("registration-form").style.display = "block";
+        }
+
+        function submitRegistration() {
+            let studentName = document.getElementById("studentName").value;
+            let studentID = document.getElementById("studentID").value;
+            let studentEmail = document.getElementById("studentEmail").value;
+            let gitamEmailPattern = /^[a-zA-Z0-9._%+-]+@gitam\.in$/;
+            if (!studentName || !studentID || !gitamEmailPattern.test(studentEmail)) {
+                alert("Invalid details. Please use your GITAM email and provide valid information.");
+                return;
+            }
+
+    </script>
+</body>
+</html>
