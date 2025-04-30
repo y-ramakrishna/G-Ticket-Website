@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visakhapatnam Events - GITAM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background: #2D4E3F;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 50px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        .navbar a:hover {
+            background: #3D6D5A;
+            border-radius: 5px;
+        }
+        .heading-container {
+            text-align: center;
+            width: 100%;
+        }
+        .category-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .category-menu button {
+            padding: 10px 20px;
+            border: none;
+            background: #2D4E3F;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .category-menu button:hover {
+            background: #3D6D5A;
+        }
+        .event-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            text-align: left;
+        }
+        .event {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .event-details {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .event-media {
+            text-align: center;
+        }
+        .event img {
+            width: 150px;
+            height: 150px;
+            display: block;
+        }
+        .register-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            background: #2D4E3F;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .register-btn:hover {
+            background: #3D6D5A;
+        }
+        .form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .form-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            border: none;
+            background: #2D4E3F;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="gitam.html">← Back to Home</a>
+    </div>
+    
+    <div class="heading-container">
+        <h1>Visakhapatnam Events</h1>
+    </div>
+    
+    <div class="category-menu">
+        <button onclick="showCategory('tech')">Tech Events</button>
+        <button onclick="showCategory('cultural')">Cultural Fest</button>
+        <button onclick="showCategory('workshop')">Workshops</button>
+        <button onclick="showCategory('hackathon')">Hackathons</button>
+    </div>
+    
+    <div class="event-container" id="event-list">
+        <p>Select a category to view events.</p>
+    </div>
+
+    <div class="form-container" id="registration-form">
+        <h2>Register for Event</h2>
+        <input type="text" id="studentName" placeholder="Enter your full name" required>
+        <input type="text" id="studentID" placeholder="Enter your GITAM Roll Number" required>
+        <input type="email" id="studentEmail" placeholder="Enter your GITAM Email" required>
+        <button onclick="submitRegistration()">Submit</button>
+    </div>
+
+    <script>
+        let selectedEvent = "";
+        let selectedCategory = "";
+
+  function showCategory(category) {
+    let events = {
+        tech: `
+            <h2>Tech Events</h2>
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Genesis 2025</h3>
+                    <p><strong>Date:</strong> March 15, 2025</p>
+                    <p><strong>Location:</strong> GITAM Convention Center</p>
+                    <p><strong>Description:</strong> Annual tech festival with AI, ML, and Web Dev 
+                </div>
+                <div class='event-media'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsBt45wgqAaC3xNkr1_E9lG1Qw5YE8amdqOw&s" alt='Genesis 2025'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    </div>
+            </div>
+
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Dev Fest 2025</h3>
+                    <p><strong>Date:</strong> April 10, 2025</p>
+                    <p><strong>Location:</strong> GITAM Career Center</p>
+                        <p><strong>Description:</strong> Career fair connecting students with top tech companies.</p>
+                </div>
+                <div class='event-media'>
+                        <img src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-goog/events/DF23-Bevy-EventThumb-Blue%402x_1PMcPtN.png" alt='Dev Fest'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    </div>
+            </div>
+
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>NASSCOM Career Fair</h3>
+                    <p><strong>Date:</strong> April 25, 2025</p>
+                     <p><strong>Location:</strong> GITAM Career Center</p>
+                        <p><strong>Description:</strong> Career fair connecting students with top tech companies.</p>
+                </div>
+                <div class='event-media'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJxtZXH8-uiKAljsA95g15i8kXqYZNOpR8zA&s" alt='NASSCOM Fair'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    </div>
+            </div>`,
+
+        cultural: `
+            <h2>Cultural Fest</h2>
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Shore Fest 2025</h3>
+                    <p><strong>Date:</strong> March 20, 2025</p>
+                    <p><strong>Date:</strong> March 20, 2025</p>
+                        <p><strong>Location:</strong> GITAM Beachside</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://shore.gitam.edu/static/img/shore25logo.png" alt='Shore Fest'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    </div>
+                </div>
+
+
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Kalakrithi 2025</h3>
+                    <p><strong>Date:</strong> March 22, 2025</p>
+                    p><strong>Location:</strong> GITAM Open Auditorium</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2FqJ_f8dnNvW-jr6hX-RySXWbaj0j3Sihaw&s" alt='Kalakrithi 2025'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    </div>
+                </div>
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Samyuktha Fest 2025</h3>
+                    <p><strong>Date:</strong> April 5, 2025</p>
+                <p><strong>Location:</strong> Coke Station Road</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQik67n-j1G68BV4BkojAnyHw_DRyeABnqPDw&s" alt='Kalakrithi 2025'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    </div>
+                </div>`,
+
+        workshop: `
+            <h2>Workshops</h2>
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>AI & ML Workshop</h3>
+                    <p><strong>Date:</strong> March 15, 2025</p>
+                    <p><strong>Location:</strong> GITAM Lab 3</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://www.bitmesra.ac.in/UploadedDocuments/jpradmincse/images/AIML_workshop.jpg" alt='AIML Workshop'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                <button class="register-btn" onclick="openRegistrationForm('AI & ML Workshop', 'Workshop')">Register</button>
+                </div>
+            </div>
+
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Data Science Workshop</h3>
+                    <p><strong>Date:</strong> April 10, 2025</p>
+                    <p><strong>Location:</strong> GITAM Lab 5</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE1NUpYelDl8Hcks-pd1qq4qnQ1qsYK6-RGQ&s" alt='Data Science Workshop'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    <button class="register-btn" onclick="openRegistrationForm('Data Science Workshop', 'Workshop')">Register</button>
+                </div>
+            </div>
+
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>IOT Workshop</h3>
+                    <p><strong>Date:</strong> April 25, 2025</p>
+                    <p><strong>Location:</strong> GITAM Lab 6</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbk5ulCDU6aWBJWTev-fzL3Qf2VYNEyc9N3w&s" alt='IOT Workshop'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    <button class="register-btn" onclick="openRegistrationForm('IOT Workshop', 'Workshop')">Register</button>
+                </div>
+            </div>`,
+
+        hackathon: `
+            <h2>Hackathons</h2>
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Smart IDEAthon</h3>
+                    <p><strong>Date:</strong> May 10, 2025</p>
+                    <p><strong>Location:</strong> GITAM Innovation Hub</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSChvVgEbDbBsbhUjsIPKwrhcB_FI7ptiqpGA&s" alt='Smart IDEAthon'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    <button class="register-btn" onclick="openRegistrationForm('Smart IDEAthon', 'Hackathon')">Register</button>
+                </div>
+            </div>
+
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Meta Developers Committee (MDC) Hackathon</h3>
+                    <p><strong>Date:</strong> May 12, 2025</p>
+                    <p><strong>Location:</strong> GITAM AI Center</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://media.licdn.com/dms/image/v2/D5622AQE4_BKnR12qrQ/feedshare-shrink_800/feedshare-shrink_800/0/1733370687464?e=2147483647&v=beta&t=nOhvQi8_Fdte-G8RNybvDXDny9hzutUCSSdIQLOLePE" alt='MDC Hackathon'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    <button class="register-btn" onclick="openRegistrationForm('MDC Hackathon', 'Hackathon')">Register</button>
+                </div>
+            </div>
+
+            <div class='event'>
+                <div class='event-details'>
+                    <h3>Smart India Hackathon</h3>
+                    <p><strong>Date:</strong> May 15, 2025</p>
+                    <p><strong>Location:</strong> GITAM Tech Hall</p>
+                    </div>
+                    <div class='event-media'>
+                        <img src="https://i.ytimg.com/vi/znMbKz6ZPno/maxresdefault.jpg" alt='Smart India Hackathon'>
+                        <div class='qr-code'><p><b>Scan QR to Register</b></p><img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"></div>
+                    <button class="register-btn" onclick="openRegistrationForm('Smart India Hackathon', 'Hackathon')">Register</button>
+                </div>
+            </div>`
+    };
+
+    // ✅ Ensure the category exists before updating HTML
+    if (events.hasOwnProperty(category)) {
+        document.getElementById("event-list").innerHTML = events[category];
+    } else {
+        console.error("Invalid category:", category);
+    }
+}
+ function openRegistrationForm(eventName, category) {
+            selectedEvent = eventName;
+            selectedCategory = category;
+            document.getElementById("registration-form").style.display = "block";
+        }
+
+        function submitRegistration() {
+            let studentName = document.getElementById("studentName").value;
+            let studentID = document.getElementById("studentID").value;
+            let studentEmail = document.getElementById("studentEmail").value;
+            let gitamEmailPattern = /^[a-zA-Z0-9._%+-]+@gitam\.in$/;
+            if (!studentName || !studentID || !gitamEmailPattern.test(studentEmail)) {
+                alert("Invalid details. Please use your GITAM email and provide valid information.");
+                return;
+            }
+            let registrations = JSON.parse(localStorage.getItem("eventRegistrations")) || [];
+            registrations.push({ name: studentName, rollNumber: studentID, email: studentEmail, event: selectedEvent, category: selectedCategory, points: 5 });
+            localStorage.setItem("eventRegistrations", JSON.stringify(registrations));
+            alert(`Successfully registered for ${selectedEvent}!`);
+            document.getElementById("registration-form").style.display = "none";
+            window.location.href = "leaderboard.html";
+        }
+    </script>
+</body>
+</html>
